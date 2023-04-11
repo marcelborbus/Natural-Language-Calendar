@@ -2,8 +2,9 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  webpack(config, options) {
+  env: { OPENAI_API_KEY: process.env.OPENAI_API_KEY },
 
+  webpack(config, options) {
     config.experiments = {
       asyncWebAssembly: true,
       topLevelAwait: true,
