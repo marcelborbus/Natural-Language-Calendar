@@ -4,6 +4,11 @@ import { doc, collection, addDoc, getDocs, deleteDoc } from 'firebase/firestore'
 
 import db from './api/firebase';
 import Calendar, { Event } from './calendar'
+import res from './api/langchain'
+
+try {
+console.log(res)
+} catch (e) {console.log(e)}
 
 export default function Home() {
   const [events, setEvents] = useState<Event[]>([]);
