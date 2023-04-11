@@ -9,39 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "@dqbd/tiktoken": "^1.0.4",
-    "@fullcalendar/common": "^5.11.4",
     "@fullcalendar/daygrid": "^6.1.5",
-    "@fullcalendar/interaction": "^6.1.5",
     "@fullcalendar/react": "^6.1.5",
-    "@fullcalendar/timegrid": "^6.1.5",
     "@huggingface/inference": "^1.7.1",
-    "@types/node": "18.15.11",
     "@types/react": "18.0.33",
-    "@types/react-dom": "18.0.11",
-    "autoprefixer": "10.4.14",
     "cohere-ai": "^5.1.0",
-    "dotenv": "^16.0.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "firebase": "^9.19.1",
-    "fs": "^0.0.1-security",
-    "fs.promises": "^0.1.2",
-    "install": "^0.13.0",
     "langchain": "^0.0.52",
     "next": "^13.3.0",
-    "postcss": "8.4.21",
-    "promise-polyfill": "^8.3.0",
-    "promises": "^0.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-query": "^3.39.3",
     "replicate": "^0.9.1",
-    "tailwindcss": "3.3.1",
     "typescript": "5.0.4"
-  },
-  "devDependencies": {
-    "node-libs-browser": "^2.2.1"
   }
 }
