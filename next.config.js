@@ -2,7 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  env: { OPENAI_API_KEY: process.env.OPENAI_API_KEY },
+  env: { OPENAI_KEY: process.env.OPENAI_AI_KEY },
 
   webpack(config, options) {
     config.experiments = {
