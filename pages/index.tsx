@@ -3,12 +3,11 @@ import Head from 'next/head';
 import { doc, collection, addDoc, getDocs, deleteDoc } from 'firebase/firestore';
 
 import db from './api/firebase';
-import Calendar, { Event } from './calendar'
-import res from './api/langchain'
+import Calendar, { Event } from './calendar';
+import Button from './button';
 
-try {
-console.log(res)
-} catch (e) {console.log(e)}
+import res from './api/langchain'
+// console.log(res)
 
 export default function Home() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -58,6 +57,7 @@ export default function Home() {
 
       <main>
         <h1>Natural Language Calendar</h1>
+        <Button></Button>
 
         <form onSubmit={handleCreateEvent}>
           <label>
@@ -91,7 +91,7 @@ export default function Home() {
           {events.map((event) => (
             <li key={event.id}>
               {event.title} - {event.start} to {event.end}
-              <button onClick={() => handleDeleteEvent(event.id)}>
+              <button onClick={() => handleDeleteEvent(event.id) }>
                 Delete
               </button>
             </li>
