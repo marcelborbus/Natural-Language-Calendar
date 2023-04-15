@@ -1,19 +1,28 @@
-import { useState } from "react";
+import { ChangeEvent, useState, useContext } from "react";
 
-import model from './api/langchain'
+import { ModelContext } from './ModelContext';
+
 //import { OpenAI } from "langchain/llms/openai";
 
 function Button() {
   const [response, setResponse] = useState("");
-
-  const handleClick = async () => {
-    const res = await model.call("What would be a good company name a company that makes colorful socks?");
-    setResponse(res);
-  };
+  const { agent } = useContext(ModelContext);
+  
+  const handleKeyDown = async (event: any) => {
+    if (event.key === 'Enter') {
+      if (agent === null) return;
+      
+      const res = await agent.call({ input: event.target.value });
+      setResponse(res.output);
+    }
+  }
 
   return (
     <div>
-      <button onClick={handleClick}>Make Request</button>
+        <input
+          type="text"
+          onKeyDown={handleKeyDown}
+        /> 
       <div>{response}</div>
     </div>
   );

@@ -6,7 +6,8 @@ import db from './api/firebase';
 import Calendar, { Event } from './calendar';
 import Button from './button';
 
-import res from './api/langchain'
+import { ModelContextProvider } from './ModelContext';
+import { CalendarContextProvider } from './CalendarContext';
 // console.log(res)
 
 export default function Home() {
@@ -57,7 +58,7 @@ export default function Home() {
 
       <main>
         <h1>Natural Language Calendar</h1>
-        <Button></Button>
+
 
         <form onSubmit={handleCreateEvent}>
           <label>
@@ -98,8 +99,13 @@ export default function Home() {
           ))}
         </ul>
 
-        <Calendar events={events} />
-        
+        <CalendarContextProvider>
+        <ModelContextProvider>
+          <Button></Button>
+          <Calendar events={events} />  
+        </ModelContextProvider>
+        </CalendarContextProvider>
+
       </main>
     </div>
   );
