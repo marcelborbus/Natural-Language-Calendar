@@ -6,8 +6,8 @@ import db from './api/firebase';
 import Calendar, { Event } from './calendar';
 import Button from './button';
 
-import { ModelContextProvider } from './ModelContext';
-import { CalendarContextProvider } from './CalendarContext';
+import ModelContextProvider  from './ModelContext';
+import CalendarContextProvider  from './CalendarContext';
 // console.log(res)
 
 export default function Home() {

@@ -1,9 +1,9 @@
 import { AgentExecutor } from 'langchain/agents';
 import { createContext, Context, useState } from 'react';
 
-export const ModelContext = createContext<any>(null);
+export const ModelContext = createContext<any>({_agent: null, _setAgent: null});
 
-export function ModelContextProvider({ children }: any) {
+export default function ModelContextProvider({ children }: any) {
     const [agent, setAgent] = useState<AgentExecutor | null>(null)
   
     return (

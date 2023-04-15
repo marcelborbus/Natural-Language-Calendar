@@ -14,6 +14,7 @@ function Button() {
       
       const res = await agent.call({ input: event.target.value });
       setResponse(res.output);
+      console.log(res)
     }
   }
 

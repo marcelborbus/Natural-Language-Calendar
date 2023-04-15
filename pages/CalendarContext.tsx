@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react';
 
-export const CalendarContext = createContext<any>(null);
+export const CalendarContext = createContext<any>({ _calendar: null, _setCalendar: null });
 
-export function CalendarContextProvider({ children }: any) {
+export default function CalendarContextProvider({ children }: any) {
     const [calendar, setCalendar] = useState(null)
   
     return (

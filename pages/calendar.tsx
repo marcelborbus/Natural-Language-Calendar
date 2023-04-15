@@ -22,13 +22,23 @@ const Calendar = ({ events }: Props) => {
   const { setCalendar } = useContext(CalendarContext);
   const { setAgent } = useContext(ModelContext);
 
-  const handleMount = async () => {
+  /*const handleMount = async () => {
+    console.log('mounting...')
+    const calendar = calendarRef.current.getApi();
+    setCalendar(calendar);
+    console.log(calendar)
+
+    const agent = await initializeLLMWithCalendar(calendar);
+    setAgent(agent);
+  };*/
+  
+  useEffect(() => {(async () => {
     const calendar = calendarRef.current.getApi();
     setCalendar(calendar);
 
     const agent = await initializeLLMWithCalendar(calendar);
     setAgent(agent);
-  }; 
+  })()}, [])
 
   return (
     <>
@@ -37,7 +47,7 @@ const Calendar = ({ events }: Props) => {
         plugins={[dayGridPlugin]} 
         initialView="dayGridMonth" 
         events={events} 
-        eventDidMount={handleMount}
+        //eventDidMount={handleMount}
       />
     </>
   );
