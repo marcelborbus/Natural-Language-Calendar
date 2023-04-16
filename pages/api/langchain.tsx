@@ -22,7 +22,7 @@ const initializeLLMWithCalendar = async (calendar: any) => {
   // calendar.incrementDate()
 
   const tools = [
-    new DynamicTool({
+    /*new DynamicTool({
       name: "currentDatetime",
       description: "call this to get the current date and time. No input needed.",
       func: async () => moment().utcOffset(120).toISOString(), // change for other countries
@@ -32,24 +32,43 @@ const initializeLLMWithCalendar = async (calendar: any) => {
       name: "currentYear",
       description: "call this if you are prompted without a specific year, because you should always assume current year then. No input. Be sure to call this tool first!",
       func: async () => moment().utcOffset(120).format('YYYY'), // change for other countries
+    }),*/
+
+    
+    new DynamicTool({
+      name: "setDateTime",
+      description: "call this to set the date or time of an ISODateString. Input in the strictly double-quotet JSON with keys isoDate: string, unit: string and amount: int. Object is passed to moment.set.",
+      func: async (args) => {
+        console.log('set', args);
+        
+        try {
+          const {isoDate, unit, amount} = JSON.parse(args);
+          return moment(isoDate).set(unit, amount).toISOString();
+        } catch (e) {
+          return JSON.stringify(e);
+        }
+      }
     }),
 
     new DynamicTool({
       name: "relativeDatetime",
       description: "call this to get relative dates and times from \"isoDate\" by adding/subtracting time. input is JSON with keys strictly double-quoted: \"isoDate\" and \"add\" object that is passed to moment.add",
       func: async (args) => {
-        const {isoDate, add} = JSON.parse(args);
-        console.log(args);
-        // const addition = JSON.parse(args);
-        return moment(isoDate).utcOffset(120).add(add).toISOString();
+        console.log('add', args);
+        
+        try {
+          const {isoDate, add} = JSON.parse(args);
+          return moment(isoDate).add(add).toISOString();          
+        } catch (e) {
+          return JSON.stringify(e);
+        }
       }
     }),
 
     new DynamicTool({
       name: "weekDay",
-      description: "call this to get the weekday of the input. Input is an ISO Date String. If input is empty, it will return the current weekday.",
+      description: "call this to get the weekday of the input. Input is an ISO Date String.",
       func: async (isoDate) => {
-        if (isoDate === '') return moment().utcOffset(120).format('dddd');
         console.log(isoDate);
         return moment(isoDate).format('dddd');
       }
@@ -57,7 +76,7 @@ const initializeLLMWithCalendar = async (calendar: any) => {
 
     new DynamicTool({
       name: "getWeekday",
-      description: "call this to get the ISODate of the next specified Weekday with time 0. Input is capitalized weekday as a string. Prioritize over currentDateTime. Be sure to adjust the time portion of the ISODate before using other tools.",
+      description: "call this to get the ISODate of the next specified Weekday with time 0. Input is capitalized weekday as a string. Be sure to adjust the time portion of the ISODate before using other tools.",
       func: async (weekday) => {
         const today = moment().utcOffset(120);
 
@@ -74,9 +93,16 @@ const initializeLLMWithCalendar = async (calendar: any) => {
       name: "createEvent",
       description: "call this to create a FullCalendar event whith the event in JSON and the keys in double quotes! Use the other tools first to get the right start and end dates. Dont use relativeDatetime to set times.",
       func: async (args: string): Promise<string> => {
-        console.log(args);
-        const result = calendar.addEvent(JSON.parse(args));
-        return JSON.stringify(result);
+        console.log('create', args);
+
+        try {
+          const input = JSON.parse(args);
+          const result = calendar.addEvent(input);
+          return JSON.stringify(result);
+        } catch (e) {
+          return JSON.stringify(e);
+        }
+
       }
     }),
 
