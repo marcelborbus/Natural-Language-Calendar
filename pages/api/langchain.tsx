@@ -94,7 +94,7 @@ const initializeLLMWithCalendar = async (calendar: any) => {
     }),
   ]
   
-  const model = new OpenAI({ openAIApiKey: "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", temperature: 0 });
+  const model = new OpenAI({ openAIApiKey: API_KEY, temperature: 0 });
   
   const agent = await initializeAgentExecutor(
     tools,
