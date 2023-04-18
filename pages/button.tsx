@@ -27,7 +27,8 @@ function Button() {
         <input
           type="text"
           onKeyDown={handleKeyDown}
-        /> 
+          //autoComplete={'' + Math.random()}
+         /> 
       <div>{response}</div>
     </div>
   );

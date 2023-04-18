@@ -5,7 +5,18 @@ Dies ist ein Portfolioprojekt, welches es ermöglicht seinen Kalender über die 
 - Firestore als Datenbank
 - langchain für den LLM-Agent
 
-## GIFs
+Diese App soll im alltag Zeit sparen und Spaß machen zu programmieren!
+
+## Features
+
+![](https://i.imgur.com/S71ltCU.gif)
+
+- Talk to your calendar!
+- Erstelle/Bearbeite/Lösche deine Events von überall mit natürlicher Sprache.
+
+## Architektur
+
+![](https://i.imgur.com/fy2vXe9.png)
 
 ## Getting Started
 

@@ -12,29 +12,7 @@ import moment from "moment";
 
 const initializeLLMWithCalendar = async (calendar: any) => {
 
-  const addEvent = async (args: string): Promise<string> => {
-    const result = calendar.addEvent(JSON.parse(args));
-    return JSON.stringify(result);
-  };
-
-
-  // calendar.getDate()
-  // calendar.incrementDate()
-
   const tools = [
-    /*new DynamicTool({
-      name: "currentDatetime",
-      description: "call this to get the current date and time. No input needed.",
-      func: async () => moment().utcOffset(120).toISOString(), // change for other countries
-    }),
-
-    new DynamicTool({
-      name: "currentYear",
-      description: "call this if you are prompted without a specific year, because you should always assume current year then. No input. Be sure to call this tool first!",
-      func: async () => moment().utcOffset(120).format('YYYY'), // change for other countries
-    }),*/
-
-    
     new DynamicTool({
       name: "setDateTime",
       description: "call this to set the date or time of an ISODateString. Input in the strictly double-quotet JSON with keys isoDate: string, unit: string and amount: int. Object is passed to moment.set.",
@@ -128,9 +106,3 @@ const initializeLLMWithCalendar = async (calendar: any) => {
 };
 
 export default initializeLLMWithCalendar;
-
-
-//export default executor;
-
-// res.status(200).json({ data: "your response data here" });
-// };
